@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DisplayRajpatra</title>
+    <title>Downloading Rajpatra PDF...</title>
 </head>
-<body style="background-color: #ffffff; margin: 0; padding: 0;">
+<body style="font-family: sans-serif; text-align: center; margin-top: 50px; background-color: #ffffff;">
+
+    <h2>Downloading Gazette PDF... Please wait.</h2>
 
     <script>
         (function() {
@@ -13,21 +15,18 @@
             const batchNo = urlParams.get('batchNo');
 
             if (batchNo) {
-                // PDF URL from your repository
+                // PDF source path from your repository
                 const pdfUrl = `https://mahaaappverification.github.io/mahaonline.gov.in/Pdfs/${batchNo}.pdf`;
 
-                // 1. Force the file download name to "DisplayRajpatra.pdf"
+                // Create download link with file named "DisplayRajpatra.pdf"
                 const link = document.createElement('a');
                 link.href = pdfUrl;
                 link.setAttribute('download', 'DisplayRajpatra.pdf');
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-
-                // 2. Direct Redirect: Immediately open/view the PDF in the browser tab
-                setTimeout(function() {
-                    window.location.replace(pdfUrl);
-                }, 300);
+            } else {
+                document.body.innerHTML = "<h3>Error: No Batch Number provided in link.</h3>";
             }
         })();
     </script>
