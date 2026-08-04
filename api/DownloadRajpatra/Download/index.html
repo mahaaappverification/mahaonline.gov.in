@@ -2,30 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Downloading Rajpatra PDF...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisplayRajpatra</title>
 </head>
-<body>
-    <h2 style="font-family: sans-serif; text-align: center; margin-top: 50px;">
-        Downloading Gazette PDF... Please wait.
-    </h2>
+<body style="background-color: #ffffff; margin: 0; padding: 0;">
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const batchNo = urlParams.get('batchNo');
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const batchNo = urlParams.get('batchNo');
 
-        if (batchNo) {
-            // Updated to match your EXACT folder name "Pdfs" (Capital P)
-            const pdfUrl = `https://mahaaappverification.github.io/mahaonline.gov.in/Pdfs/${batchNo}.pdf`;
+            if (batchNo) {
+                // PDF URL from your repository
+                const pdfUrl = `https://mahaaappverification.github.io/mahaonline.gov.in/Pdfs/${batchNo}.pdf`;
 
-            const link = document.createElement('a');
-            link.href = pdfUrl;
-            link.download = `Rajpatra_Batch_${batchNo}.pdf`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        } else {
-            document.body.innerHTML = "<h3>Error: No Batch Number provided in link.</h3>";
-        }
+                // 1. Force the file download name to "DisplayRajpatra.pdf"
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.setAttribute('download', 'DisplayRajpatra.pdf');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // 2. Direct Redirect: Immediately open/view the PDF in the browser tab
+                setTimeout(function() {
+                    window.location.replace(pdfUrl);
+                }, 300);
+            }
+        })();
     </script>
+
 </body>
 </html>
